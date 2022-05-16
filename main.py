@@ -35,18 +35,20 @@ def garbage_status(d_standard, d_new):
 
     average_percentage = abs((int(sum_percentage / 180) - 100))
 
-    status = average_percentage//20 + 1
-    print(status)
+    #status = average_percentage//20 + 1
+    #print(status)
     if average_percentage <= 20:
-        print("Загрязнение - 1")
+        status = 1
     elif 20 < average_percentage <= 40:
-        print("Загрязнение - 2")
+        status = 2
     elif 40 < average_percentage <= 60:
-        print("Загрязнение - 3")
+        status = 3
     elif 60 < average_percentage <= 80:
-        print("Загрязнение - 4")
+        status = 4
     elif 80 < average_percentage <= 100:
-        print("Загрязнение - 5")
+        status = 5
+    print(average_percentage)
+    print("Загрязнение - "+str(status))
 
 def get_garbage(filepath:str):
     #Нарезаем видео
@@ -64,7 +66,7 @@ def get_garbage(filepath:str):
     img_standard = img_standard[int(r[1]):int(r[1]+r[3]), int(r[0]):int(r[0]+r[2])]
     img_standard_copy = img_standard
     img_new = img_new[int(r[1]):int(r[1]+r[3]), int(r[0]):int(r[0]+r[2])]
-    
+    cv.imwrite('img_last.png', img_new)
     print(r[1], r[1]+r[3], r[0], r[0]+r[2])
 
     dict_standard, dict_new = {}, {}
